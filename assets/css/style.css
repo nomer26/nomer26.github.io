@@ -65,6 +65,9 @@ article .share .twitter:hover {
 #contact-list li:hover .fa-pinterest {
 	color: #CC2127;
 }
+#contact-list li:hover .fa-facebook {
+	color: #43609C;
+}
 #contact-list li:hover .fa-rss {
 	color: #e74c3c;
 }

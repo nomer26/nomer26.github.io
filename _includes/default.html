@@ -58,6 +58,11 @@
 				<i class="fa fa-envelope"></i>
 			</a>
 			{% endif %}
+			{% if site.author.facebook %}
+			<a type="button" class="navbar-toggle nav-link" href="http:://facebook.com/{{ site.author.facebook }}">
+				<i class="fa fa-envelope"></i>
+			</a>
+			{% endif %}
 			<a class="navbar-brand" href="{{ site.BASE_PATH }}/">
 				<img src="//www.gravatar.com/avatar/{{site.author.email_md5}}?s=35" class="img-circle" />
 				{{ site.title }}
