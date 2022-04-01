@@ -1,0 +1,68 @@
+I"<h1 id="what-i-need-to-know-about-aws"><strong><em>What I need to know about AWS</em></strong></h1>
+
+<p><br /><br /></p>
+
+<p><img src="/assets/images/VPC.png" alt="VPC" /></p>
+
+<h2 id="nat-network"><strong>NAT network</strong></h2>
+<p>` 인터넷에서 외부에 공개되지 않은 사설망 (Private Subnet) 에 접근하기 위해 주소 변환을 거치는 작업`</p>
+
+<pre>
+<b>NAT Instance</b> : EC2와 같은 인스턴스의 한 종류로  EC2 구성과 동일하게 구성하며, 인터넷으로부터 요청을 받으므로 Public Subnet에 구성합니다.
+    (NAT Gateway를 포함한 인터넷을 필요로하면 Public Subnet에 구성해야 합니다.)
+
+<b>NAT Gateway</b> : 완전 관리형 서비스로 vpc, elastic ip 만 입력하면 쉽게 인터넷에 접근할 수 있습니다. 
+단, NAT Instance 보다 3배 정도 비싸다고 합니다.
+</pre>
+
+<h3 id="nat-동작"><strong>NAT 동작</strong></h3>
+
+<blockquote>
+  <p>위 그림 기준     ① - ② - ④ - ⑤ - ⑥ - ⑤ - ④ - ③ 과 같이 동작합니다.</p>
+</blockquote>
+
+<hr />
+
+<p><br /><br /><br /></p>
+
+<h2 id="nacl-vs-security-group"><strong>NACL vs Security Group</strong></h2>
+
+<p><img src="/assets/images/NACL_SG.png" alt="NACL&amp;Security Group" /></p>
+
+<pre>
+
+ <b>NACL  ( Network Access Control List )</b>
+ : Network의 엑세스 자격을 검사합니다.  vpc 를 지정해서 Subnet에 연결하여 사용합니다.
+  <b>Inbound / Outbound</b> : 유형, 포트, IP대역, 허용/거부를 설정해 접근을 제어합니다.
+  <strong>단, 우선순위는 규칙 번호를 기준으로 합니다. 
+  (앞서 규칙에 따라 처리했다면 후순위 규칙번호는 고려하지 않습니다.)</strong> <br />
+  <strong>§ Inbound와 Outbound 를 엄격히 구분하여 처리합니다. 이를 <ins>Stateless</ins> 라고합니다. </strong>
+</pre>
+<pre>
+<b>Security Group</b>
+  : Network의 출발지(Source)와 목적지(Destination)에 대한 엑세스 자격을 검사합니다. 
+    vpc를 지정해서 인스턴스에 연결하여 사용할 수 있습니다. 
+  <b>Inbound / Outbound</b> : 보안그룹 규칙 ID, 유형, 포트, 소스/대상을 설정해 접근을 제어합니다.
+  <strong>§ Inbound로 접근한 요청에 대해서 상태를 기억하며, 응답할 때 Outbound 규칙과 상관없이 전송합니다.
+  이를 <ins>Stateful</ins> 이라고 합니다.</strong>
+</pre>
+
+<blockquote>
+  <p><strong>궁극적인 NACL vs Security Group (S.G) 의 차이점</strong>
+<br />&lt;/b&gt;<br />- <b>NACL</b> 은 <b><ins>서브넷 수준</ins></b>의 보안 서비스입니다.
+<br />- <b>S.G</b> 은 <b><ins>인스턴스 수준</ins></b>의 보안 서비스입니다.
+<br /><br />- <b>NACL</b>은 <ins>블랙리스트/화이트리스트</ins>   <strong>(허용/거부를 직접 정합니다.)</strong>
+<br />- <b>S.G</b> 은 기본적으로 <ins>모든 접근을 거부</ins>하며 <strong>허용을 허가할 조건을 설정합니다.</strong>
+<br /><br />위 개념정리에서 언급했지만 <b>NACL</b>은 <ins>규칙번호에 따라 우선순위를 지정</ins>할 수 있습니다.
+<br /><br /> =&gt; 결론적으로 <b>NACL</b> 이 <b>Security Group</b> 보다 <ins>더 엄격한 보안 서비스</ins>로 볼 수 있습니다. <br /><br /></p>
+  <blockquote>
+    <p><strong>TMI</strong></p>
+
+    <p><b>NACL</b> Inbound에 대한 응답으로 <ins>임시 포트 1024 ~ 65535</ins> 가 임의로 할당되어 응답을 처리하는데 임시 포트를 <b>허용</b>해 주어야 정상적으로 응답이 전송됩니다.</p>
+  </blockquote>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+:ET
