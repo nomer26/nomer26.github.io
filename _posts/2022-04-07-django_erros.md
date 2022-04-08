@@ -23,7 +23,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR,'이미지 보관 폴더'),]
 ```
-이미지가 필요한 html 파일에  `{% load static %}` 명령을 추가해주었더니 정상적으로 이미지를 불러 올 수 있었습니다.
+이미지가 필요한 html 파일에  '{% load static %}' 명령을 추가해주었더니 정상적으로 이미지를 불러 올 수 있었습니다.
 
 <br><br><br> 
 
