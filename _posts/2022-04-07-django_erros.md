@@ -7,6 +7,7 @@ fullview: true
 comments: true
 ---
 
+
 ## **Staticfiles**
 
 장애 발생 시점에 오류메세지를 캡쳐하지 못했습니다.

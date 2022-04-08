@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OS
+title: GO_Features
 categories: [GO]
 tags: [Compile, Goroutine, Concurrency, Package]
 fullview: true
