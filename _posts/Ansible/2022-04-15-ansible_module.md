@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Module
+title: Ansible_Module
 categories: [Ansible]
 tags: [module, ansible]
 fullview: true

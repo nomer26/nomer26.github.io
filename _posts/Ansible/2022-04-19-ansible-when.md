@@ -13,7 +13,63 @@ when 절에는 변수를 다룰때 사용하는 **'{{ }}' 괄호가 필요 없�
 
 <br>
 
+ex) 문자열 매칭
+```yaml
+- name: string match
+  hosts: ansi-node1
+  gather_facts: no
+  vars:
+    str1: "aabbccddeeff"
+  tasks:
+  - name: pattern1
+    debug:
+      msg: "match pattern 1"
+    when: str1 is match("aabbccddeeff")
+  - name: pattern2
+    debug:
+      msg: "match pattern 2"
+    when: str1 is search("bb..dd")
+  
+  # match 와 search 비슷하게 사용
+```
+
+<br>
+ex) 작업상태 확인
+
+```yaml
+- name: register confirm
+  hosts: ansi-node1
+  gather_facts: no
+#  vars:
+  tasks:
+  - command: ls
+    register: aa
+    ignore_errors: yes
+
+  - debug:
+      var: aa
+  - debug:
+      msg: "It is fail"
+    when: aa is failed
+
+  - debug:
+      msg: "It is changed"
+    when: aa is changed
+
+  - debug:
+      msg: "It is success"
+    when: aa is success
+
+  - debug:
+      msg: "{{ aa.stdout }}"
+    when: aa.rc == 0        
+
+    when: (ip_addr | ipaddr) == false
+    # 이런 식의 필터활용도 가능합니다
+```
+<br>
 ex)  SELinux가 활성화된 Host만 작업 수행하는 Play
+
 ```yaml
 tasks:
   - name: Configure SELinux to start mysql on any port
