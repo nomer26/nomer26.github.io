@@ -59,19 +59,23 @@ $ ansible all -m [module] -a [module options]
 ```
 <br>
 
+**아래 모든 모듈들을 익히겠다는건 매우 비효율적이라고 생각하기 때문에 용도/목적을 참고해 공식문서를 참고합니다.**
+
 **File Tool**
 <br>
-`archive` : 압축<br>
-`unarchive` : 압축 풀기<br>
-`blockinfile` : 텍스트 파일에 블록 CUD<br>
-`copy` : 파일 복사<br>
-`fetch` : 파일 가져오기<br>
-`file` : 파일 및 속성 관리<br>
+`archive` : 파일 압축 및 아카이브 생성<br>
+`unarchive` : (아카이브 복사 후)압축 풀기<br>
+`blockinfile` : 파일에 마커로 감싼 텍스트 블록 CUD (사용해보면 이해가능) <br>
+`copy` : 원격노드로 파일 복사<br>
+`fetch` : 원격노드에서 파일 가져오기<br>
+`file` : 파일 및 파일 속성 관리<br>
+`find` : 특정 기준에 기반한 파일 목록 반환
 `lineinfile` : 텍스트 파일에 행 관리<br>
 `replace` : 텍스트 파일 문자열 관리<br>
 `synchronize` : rsync 동기화<br>
-`template` : Jinja2 템플릿<br>
+`template` : 원격노드에 파일을 템플릿으로 출력<br>
 <br>
+
 **Package Tool**
 <br>
 `gem` : Ruby Gems<br>
@@ -79,23 +83,25 @@ $ ansible all -m [module] -a [module options]
 `pip` : Python<br>
 `apt` : Debian/Ubuntu<br>
 `dnf` : CentOS 8 ~<br>
-`yum` : CentOS <br>
-`package` : General OS<br><br>
+`yum` : CentOS 7 <br>
+`package` : General OS<br>
+<br>
 
 **System Tool**
 <br>
-`cron`<br>
-`filesystem`<br>
-`firewalld`<br>
-`iptables`<br>
+`cron` : cron.d 및 crontab 항목 관리<br>
+`filesystem` : 파일시스템 생성<br>
+`firewalld` : 방화벽 관리<br>
+`iptables` : iptables 규칙 수정<br>
 `lvg`   : LVM volume group<br>
 `lvol`  : LVM logical volume<br>
-`mount`<br>
+`mount` : 마운트 관리<br>
 `parted` : partition<br>
 `ping`<br>
 `reboot`<br>
 `service`<br>
 `ufw` : UFW firewall<br>
+<br>
 
 **Source(Version) Control**
 <br>
