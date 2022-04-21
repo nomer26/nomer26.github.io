@@ -71,3 +71,29 @@ tasks:
     notify: "restart web services"
 ```
 위와 같이 `listen` 키워드를 통해 handler가 직접 호출을 받을 수도 있습니다.
+
+- force_handlers: yes <br>
+  : notify가 changed 되었다면 이후 task 에서 에러가 발생하더라도 handler를 강제 실행합니다.
+
+###  작업 실패 재지정
+
+shell, command 모듈 실행 결과를 기반으로 지정할 수 있습니다.
+
+failed
+```yaml
+tasks:
+  - shell: ls %@#%
+    register: result
+    failed_when: result.stdout
+```
+
+<br>
+
+changed
+```yaml
+tasks:
+  - command: "true"
+    register: result
+    changed_when: result.stdout
+```
+
