@@ -219,7 +219,7 @@ tasks:
 ## Dict
 - name: The same as above using a dict
   ansible.builtin.command: echo {{ item.key }}
-  loop: {{ query('dict', mydict|default({})) }}
+  loop: "{{ query('dict', mydict|default()) }}"
   when: item.value > 5
 ```
 
